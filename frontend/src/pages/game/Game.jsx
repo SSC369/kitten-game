@@ -56,9 +56,19 @@ const Game = () => {
   };
 
   useEffect(() => {
-    if (cardCount === 0 && type !== "bomb") {
-      uploadScore();
+    if (cardCount === 0) {
+      if (type === "bomb") {
+        if (defuseCards >= 0) {
+          uploadScore();
+        } else {
+        }
+      } else {
+        const load = toast.loading("Loading server ...");
+        uploadScore();
+        toast.dismiss(load);
+      }
     }
+
     const saveData = () => {
       const gameData = {
         cards: cardCount,

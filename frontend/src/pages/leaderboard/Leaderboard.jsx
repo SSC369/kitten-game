@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import axios from "axios"; // Import axios for making HTTP requests
 import Loader from "../../components/loader/Loader";
 import { MdLeaderboard } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 import { FaMedal } from "react-icons/fa6";
 import "./leaderboard.scss";
 
@@ -12,8 +13,11 @@ const Leaderboard = () => {
   const socket = io(import.meta.env.VITE_SERVER); // Establish WebSocket connection
 
   useEffect(() => {
+    const loadingToast = toast.loading("loading");
     // Fetch leaderboard data when the component mounts
     fetchLeaderboard();
+    toast.dismiss(loadingToast);
+
     // Listen for leaderboard updates from the WebSocket server
     socket.on("leaderboardUpdate", (updatedLeaderboard) => {
       setData(updatedLeaderboard);
@@ -68,6 +72,7 @@ const Leaderboard = () => {
           </div>
         </div>
       )}
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };

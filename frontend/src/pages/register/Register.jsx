@@ -53,6 +53,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+    const load = toast.loading("Server is starting...", { duration: 1000 });
     e.preventDefault();
     const { email, password, name } = userData;
     try {
@@ -73,6 +74,7 @@ const Register = () => {
             email: "",
             confirmPassword: "",
           });
+          toast.dismiss(load);
           toast.success("Registered Successfully", {
             duration: 1000,
             icon: "🔥",

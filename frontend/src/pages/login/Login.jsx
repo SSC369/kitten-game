@@ -36,6 +36,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const load = toast.loading("Server is starting...", { duration: 1000 });
     const { email, password } = userData;
 
     if (handleValidation()) {
@@ -54,6 +55,7 @@ const Login = () => {
           password: "",
           email: "",
         });
+        toast.dismiss(load);
         toast.success("login successfull", {
           duration: 1000,
         });
