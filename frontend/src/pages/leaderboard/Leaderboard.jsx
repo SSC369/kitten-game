@@ -13,10 +13,8 @@ const Leaderboard = () => {
   const socket = io(import.meta.env.VITE_SERVER); // Establish WebSocket connection
 
   useEffect(() => {
-    const loadingToast = toast.loading("loading");
     // Fetch leaderboard data when the component mounts
     fetchLeaderboard();
-    toast.dismiss(loadingToast);
 
     // Listen for leaderboard updates from the WebSocket server
     socket.on("leaderboardUpdate", (updatedLeaderboard) => {

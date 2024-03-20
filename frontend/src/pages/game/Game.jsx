@@ -63,9 +63,7 @@ const Game = () => {
         } else {
         }
       } else {
-        const load = toast.loading("Loading server ...");
         uploadScore();
-        toast.dismiss(load);
       }
     }
 
